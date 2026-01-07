@@ -15,8 +15,15 @@ public class BuscarDespesaUseCase {
 	@Autowired
 	private DespesaRepository despesaRepository;
 	
-	public List<Despesa> buscarPorEmailEData(String email, LocalDate date) {
-		
+	
+	public List<Despesa> execute(String email, LocalDate date) {
+		List<Despesa> despesas;
+		if (date != null) {
+			despesas = despesaRepository.findByEmailAndData(email, date);
+		} else {
+			despesas = despesaRepository.findByEmail(email);
+		}
+		return despesas;	
 	}
 	
 }
