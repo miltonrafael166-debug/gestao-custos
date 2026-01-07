@@ -4,8 +4,9 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.UUID;
 
-import org.springframework.data.annotation.CreatedDate;
+import org.hibernate.annotations.CreationTimestamp;
 
+import io.micrometer.common.lang.Nullable;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -20,15 +21,26 @@ public class Despesa {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private UUID id;
+	
+	@Column(nullable = false)
+
 	private String descricao;
+	
+	@Column(nullable = false)
+
 	private LocalDate data;
+	
+	@Column(nullable = false)
 	private BigDecimal valor;
 	
-	@Column(length = 100)
+	@Column(length = 100, nullable = false)
 	private String categoria;
+	
+	@Column(nullable = false)
+
 	private String email;
 	
-	@CreatedDate
+	@CreationTimestamp
 	private LocalDate data_criacao;
 
 	public UUID getId() {
